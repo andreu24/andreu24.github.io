@@ -90,7 +90,8 @@
 <p>Versión 1.0</p>
 <p class="messageXSmall"><a href="index_compatible.html">(Ir a versión compatible con iExplorer 9.0 o inferior y Safari)</a></p>
 <br>
-
+<div id="countdown"></div>
+<br>
 <p class="labels">Usuario:&#160
 <input id="user" list="userList" onChange="showDivision()"></input></p>
 <datalist id="userList">
@@ -2837,6 +2838,29 @@
 		
 		document.getElementById('infoDivision').innerHTML = smensajeDivision
 	}
+	
+	function getTimeRemaining() {
+	  var targetDate = new Date("May 6, 2023 13:50:00 GMT+0100");
+	  var now = new Date();
+	  var timeRemaining = targetDate - now;
+	  
+	  return timeRemaining;
+	}
+	
+	function updateCountdown() {
+	  var timeRemaining = getTimeRemaining();
+	  
+	  // Calcula los días, horas, minutos y segundos restantes.
+	  var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+	  var hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
+	  var minutes = Math.floor((timeRemaining / (1000 * 60)) % 60);
+	  var seconds = Math.floor((timeRemaining / 1000) % 60);
+	  
+	  // Actualiza el elemento HTML con el tiempo restante.
+	  document.getElementById("countdown").innerHTML = "Límite " + days + (days == 1 ? " día ": " días ") + hours + (hours == 1 ? " hora ": " horas ") + minutes + (minutes == 1 ? " minuto ": " minutos ") + seconds + (seconds == 1 ? " segundo": " segundos");
+	}
+	
+	setInterval(updateCountdown, 1000);
 	
 </script> 
 </center>

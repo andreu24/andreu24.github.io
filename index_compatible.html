@@ -89,6 +89,8 @@
 <br>
 <p>Versión 1.0</p>
 <br>
+<div id="countdown"></div>
+<br>
 <p class="labels">División: &#160
 <select id="divisions" onChange="getCredits(); sumPrices(); getRemaining(); printDorsal();">
 <option value="0" selected="selected">Selecciona tu división</option>
@@ -2522,6 +2524,29 @@
 		
 		document.getElementById('infoDivision').innerHTML = smensajeDivision
 	}
+	
+	function getTimeRemaining() {
+	  var targetDate = new Date("May 6, 2023 13:50:00 GMT+0100");
+	  var now = new Date();
+	  var timeRemaining = targetDate - now;
+	  
+	  return timeRemaining;
+	}
+	
+	function updateCountdown() {
+	  var timeRemaining = getTimeRemaining();
+	  
+	  // Calcula los días, horas, minutos y segundos restantes.
+	  var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+	  var hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
+	  var minutes = Math.floor((timeRemaining / (1000 * 60)) % 60);
+	  var seconds = Math.floor((timeRemaining / 1000) % 60);
+	  
+	  // Actualiza el elemento HTML con el tiempo restante.
+	  document.getElementById("countdown").innerHTML = "Límite " + days + (days == 1 ? " día ": " días ") + hours + (hours == 1 ? " hora ": " horas ") + minutes + (minutes == 1 ? " minuto ": " minutos ") + seconds + (seconds == 1 ? " segundo": " segundos");
+	}
+	
+	setInterval(updateCountdown, 1000);
 	
 </script> 
 </center>
