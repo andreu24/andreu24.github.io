@@ -2866,7 +2866,8 @@
 	  document.getElementById("countdown").innerHTML = "Límite " + days + (days == 1 ? " día ": " días ") + hours + (hours == 1 ? " hora ": " horas ") + minutes + (minutes == 1 ? " minuto ": " minutos ") + seconds + (seconds == 1 ? " segundo": " segundos");
 	}
 	
-	setInterval(updateCountdown, 1000);
+	document.getElementById("countdown").innerHTML = 'PLAZO CERRADO';
+	//setInterval(updateCountdown, 1000);
 	
 </script> 
 </center>
