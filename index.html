@@ -434,7 +434,7 @@
 				</tr>
 				<tr>
 					<td align="center"><select id="stageNumber" class="stageNumber" onChange="changeStage(value)">
-					<option value="0" selected="selected">Selecciona una etapa</option>		
+					<option value="0" selected="selected">Selecciona una etapa</option>
 					<option value="1">E1: Florence - Rimini</option>
 					<option value="2">E2: Cesenatico - Bologne</option>
 					<option value="3">E3: Plaisance - Turin</option>
@@ -472,7 +472,7 @@
 				</tr>
 				<tr>
 				<br>
-				<td align="center"><select>
+				<td align="center"><select id="display">
 				<option value="0" selected="selected">Selecciona un corredor</option>
 				</select></td>
 			</tr>
@@ -496,42 +496,52 @@
 <td class="labels">C1 :&#160</td>
 <td><select id="rider1" onChange="getCredits(); sumPrices(); getRemaining(); printDorsal();">
 <option value="0" selected="selected">Selecciona un corredor</option>
+</select></td></tr><tr>
 </tr><tr>
 <td class="labels">C2 :&#160</td>
 <td><select id="rider2" onChange="getCredits(); sumPrices(); getRemaining(); printDorsal();">
 <option value="0" selected="selected">Selecciona un corredor</option>
+</select></td></tr><tr>
 </tr><tr>
 <td class="labels">C3 :&#160</td>
 <td><select id="rider3" onChange="getCredits(); sumPrices(); getRemaining(); printDorsal();">
 <option value="0" selected="selected">Selecciona un corredor</option>
+</select></td></tr><tr>
 </tr><tr>
 <td class="labels">C4 :&#160</td>
 <td><select id="rider4" onChange="getCredits(); sumPrices(); getRemaining(); printDorsal();">
 <option value="0" selected="selected">Selecciona un corredor</option>
+</select></td></tr><tr>
 </tr><tr>
 <td class="labels">C5 :&#160</td>
 <td><select id="rider5" onChange="getCredits(); sumPrices(); getRemaining(); printDorsal();">
 <option value="0" selected="selected">Selecciona un corredor</option>
+</select></td></tr><tr>
 </tr><tr>
 <td class="labels">C6 :&#160</td>
 <td><select id="rider6" onChange="getCredits(); sumPrices(); getRemaining(); printDorsal();">
 <option value="0" selected="selected">Selecciona un corredor</option>
+</select></td></tr><tr>
 </tr><tr>
 <td class="labels">C7 :&#160</td>
 <td><select id="rider7" onChange="getCredits(); sumPrices(); getRemaining(); printDorsal();">
 <option value="0" selected="selected">Selecciona un corredor</option>
+</select></td></tr><tr>
 </tr><tr>
 <td class="labels">C8 :&#160</td>
 <td><select id="rider8" onChange="getCredits(); sumPrices(); getRemaining(); printDorsal();">
 <option value="0" selected="selected">Selecciona un corredor</option>
+</select></td></tr><tr>
 </tr><tr>
 <td class="labels">C9 :&#160</td>
 <td><select id="rider9" onChange="getCredits(); sumPrices(); getRemaining(); printDorsal();">
 <option value="0" selected="selected">Selecciona un corredor</option>
+</select></td></tr><tr>  
 </tr><tr>
 <td class="labels">R :&#160</td>
 <td><select id="reserve" onChange="getCredits(); sumPrices(); getRemaining(); printDorsal();">
 <option value="0" selected="selected">Selecciona un corredor</option>
+</select></td>
 </tr></table>
 <br>
 <p>Listado de dorsales:</p>
@@ -921,6 +931,26 @@
 	  
 	  // Actualiza el elemento HTML con el tiempo restante.
 	  document.getElementById("countdown").innerHTML = "Límite " + days + (days == 1 ? " día ": " días ") + hours + (hours == 1 ? " hora ": " horas ") + minutes + (minutes == 1 ? " minuto ": " minutos ") + seconds + (seconds == 1 ? " segundo": " segundos");
+	}
+	
+	function addRider(pdorsal, pname, pprice)
+	{
+		var oridersId = ["display", "reserve"];
+		for (let i = 1; i <= 9; i++)
+			oridersId.push("rider" + i);
+			
+		for (let i = 0; i<oridersId.length; i++)
+		{
+			var sortByName = (oridersId[i] == 'display');
+
+			var option = document.createElement('option');
+			option.text = pname;
+			option.value = pprice;
+			option.setAttribute('dorsal', pdorsal);		
+			document.getElementById(oridersId[i]).add(option);
+		}
+		
+		var htmlString = document.getElementsByTagName("html")[0];
 	}
 	
 	setInterval(updateCountdown, 1000);
